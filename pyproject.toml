@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "orderings"
-version = "1.0.0"
+version = "1.1.0"
 description = "Ordering enumeration and protocols."
 authors = ["nekitdev"]
 license = "MIT"
@@ -127,7 +127,7 @@ warn_unused_ignores = false  # compatibility
 
 [tool.changelog]
 name = "orderings"
-version = "1.0.0"
+version = "1.1.0"
 url = "https://github.com/nekitdev/orderings"
 directory = "changes"
 output = "CHANGELOG.md"

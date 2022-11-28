@@ -24,7 +24,7 @@ class Less(Protocol):
     """
 
     @abstractmethod
-    def __lt__(self: L, other: L) -> bool:
+    def __lt__(self: L, __other: L) -> bool:
         ...
 
 
@@ -37,7 +37,7 @@ class Greater(Protocol):
     """
 
     @abstractmethod
-    def __gt__(self: G, other: G) -> bool:
+    def __gt__(self: G, __other: G) -> bool:
         ...
 
 
@@ -56,7 +56,7 @@ class LessOrEqual(Protocol):
     """
 
     @abstractmethod
-    def __le__(self: LE, other: LE) -> bool:
+    def __le__(self: LE, __other: LE) -> bool:
         ...
 
 
@@ -69,7 +69,7 @@ class GreaterOrEqual(Protocol):
     """
 
     @abstractmethod
-    def __ge__(self: GE, other: GE) -> bool:
+    def __ge__(self: GE, __other: GE) -> bool:
         ...
 
 
