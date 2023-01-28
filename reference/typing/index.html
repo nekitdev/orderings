@@ -603,7 +603,7 @@ where <code>other</code> is of type <code>Self</code>.</p>
 <span class="normal">26</span>
 <span class="normal">27</span>
 <span class="normal">28</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">Less</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Represents types that implement the *less* operation (`self &lt; other`)</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Represents types that implement the *less* operation (`self &lt; other`)</span>
 <span class="sd">    where `other` is of type `Self`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -663,7 +663,7 @@ where <code>other</code> is of type <code>Self</code>.</p>
 <span class="normal">39</span>
 <span class="normal">40</span>
 <span class="normal">41</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">Greater</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Represents types that implement the *greater* operation (`self &gt; other`)</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Represents types that implement the *greater* operation (`self &gt; other`)</span>
 <span class="sd">    where `other` is of type `Self`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -719,7 +719,7 @@ and <a class="autorefs autorefs-internal" href="#orderings.typing.Greater"><code
 <span class="normal">45</span>
 <span class="normal">46</span>
 <span class="normal">47</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">StrictOrdered</span><span class="p">(</span><span class="n">Less</span><span class="p">,</span> <span class="n">Greater</span><span class="p">,</span> <span class="n">Protocol</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Represents types that implement both [`Less`][orderings.typing.Less]</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Represents types that implement both [`Less`][orderings.typing.Less]</span>
 <span class="sd">    and [`Greater`][orderings.typing.Greater] protocols.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 </code></pre></div></td></tr></table></div>
@@ -759,7 +759,7 @@ where <code>other</code> is of type <code>Self</code>.</p>
 <span class="normal">58</span>
 <span class="normal">59</span>
 <span class="normal">60</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">LessOrEqual</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Represents types that implement the *less-or-equal* operation (`self &lt;= other`)</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Represents types that implement the *less-or-equal* operation (`self &lt;= other`)</span>
 <span class="sd">    where `other` is of type `Self`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -819,7 +819,7 @@ where <code>other</code> is of type <code>Self</code>.</p>
 <span class="normal">71</span>
 <span class="normal">72</span>
 <span class="normal">73</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">GreaterOrEqual</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Represents types that implement the *greater-or-equal* operation (`self &gt;= other`)</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Represents types that implement the *greater-or-equal* operation (`self &gt;= other`)</span>
 <span class="sd">    where `other` is of type `Self`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -875,7 +875,7 @@ and <a class="autorefs autorefs-internal" href="#orderings.typing.GreaterOrEqual
 <span class="normal">77</span>
 <span class="normal">78</span>
 <span class="normal">79</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">LenientOrdered</span><span class="p">(</span><span class="n">LessOrEqual</span><span class="p">,</span> <span class="n">GreaterOrEqual</span><span class="p">,</span> <span class="n">Protocol</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Represents types that implement both [`LessOrEqual`][orderings.typing.LessOrEqual]</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Represents types that implement both [`LessOrEqual`][orderings.typing.LessOrEqual]</span>
 <span class="sd">    and [`GreaterOrEqual`][orderings.typing.GreaterOrEqual] protocols.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 </code></pre></div></td></tr></table></div>
@@ -911,7 +911,7 @@ and <a class="autorefs autorefs-internal" href="#orderings.typing.LenientOrdered
 <span class="normal">83</span>
 <span class="normal">84</span>
 <span class="normal">85</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">Ordered</span><span class="p">(</span><span class="n">StrictOrdered</span><span class="p">,</span> <span class="n">LenientOrdered</span><span class="p">,</span> <span class="n">Protocol</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Represents types that implement both [`StrictOrdered`][orderings.typing.StrictOrdered]</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Represents types that implement both [`StrictOrdered`][orderings.typing.StrictOrdered]</span>
 <span class="sd">    and [`LenientOrdered`][orderings.typing.LenientOrdered] protocols.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 </code></pre></div></td></tr></table></div>
