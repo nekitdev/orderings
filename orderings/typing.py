@@ -1,5 +1,4 @@
-from abc import abstractmethod
-from builtins import isinstance as is_instance
+from abc import abstractmethod as required
 from typing import TypeVar
 
 from typing_extensions import Protocol
@@ -12,7 +11,6 @@ __all__ = (
     "GreaterOrEqual",
     "LenientOrdered",
     "Ordered",
-    "is_instance",
 )
 
 L = TypeVar("L", bound="Less")
@@ -23,7 +21,7 @@ class Less(Protocol):
     where `other` is of type `Self`.
     """
 
-    @abstractmethod
+    @required
     def __lt__(self: L, __other: L) -> bool:
         ...
 
@@ -36,7 +34,7 @@ class Greater(Protocol):
     where `other` is of type `Self`.
     """
 
-    @abstractmethod
+    @required
     def __gt__(self: G, __other: G) -> bool:
         ...
 
@@ -55,7 +53,7 @@ class LessOrEqual(Protocol):
     where `other` is of type `Self`.
     """
 
-    @abstractmethod
+    @required
     def __le__(self: LE, __other: LE) -> bool:
         ...
 
@@ -68,7 +66,7 @@ class GreaterOrEqual(Protocol):
     where `other` is of type `Self`.
     """
 
-    @abstractmethod
+    @required
     def __ge__(self: GE, __other: GE) -> bool:
         ...
 

@@ -2,6 +2,12 @@
 
 <!-- changelogging: start -->
 
+## 1.2.0 (2023-05-21)
+
+### Internal
+
+- Migrated to using `typing-aliases` library.
+
 ## 1.1.0 (2022-11-28)
 
 ### Fixes

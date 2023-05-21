@@ -1,10 +1,11 @@
-from abc import abstractmethod
+from abc import abstractmethod as required
 from enum import Enum
 from typing import Any, TypeVar
 
+from typing_aliases import is_same_or_sub_type
 from typing_extensions import Protocol
 
-from orderings.typing import Ordered, is_instance
+from orderings.typing import Ordered
 
 __all__ = ("Compare", "Ordering")
 
@@ -95,7 +96,7 @@ class Compare(Ordered, Protocol):
     [`compare`][orderings.core.Compare.compare] method.
     """
 
-    @abstractmethod
+    @required
     def compare(self: C, other: C) -> Ordering:
         """Defines ordering via the [`Ordering`][orderings.core.Ordering] enumeration."""
         ...
@@ -113,7 +114,7 @@ class Compare(Ordered, Protocol):
         return self.compare(other).is_greater_or_equal()
 
     def __eq__(self, other: Any) -> bool:
-        return is_instance(other, type(self)) and self.compare(other).is_equal()
+        return is_same_or_sub_type(other, self) and self.compare(other).is_equal()
 
     def __ne__(self, other: Any) -> bool:
-        return not is_instance(other, type(self)) or self.compare(other).is_not_equal()
+        return is_same_or_sub_type(other, self) or self.compare(other).is_not_equal()
