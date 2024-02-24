@@ -2,6 +2,13 @@
 
 <!-- changelogging: start -->
 
+## 1.3.0 (2023-02-24)
+
+### Internal
+
+- Dropped Python 3.7 support.
+- Updated methods to use `(self, other: Self)` instead of `(self: T, other: T)`.
+
 ## 1.2.0 (2023-05-21)
 
 ### Internal

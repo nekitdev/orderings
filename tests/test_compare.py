@@ -1,19 +1,21 @@
-from typing import TypeVar
+from typing import Generic, TypeVar
+from typing_extensions import Self
 
 from orderings import Compare, Ordering
+from orderings.typing import StrictOrdered
 
-I = TypeVar("I", bound="Int")
+T = TypeVar("T", bound=StrictOrdered)
 
 
-class Int(Compare):
-    def __init__(self, value: int) -> None:
+class Wrap(Compare, Generic[T]):
+    def __init__(self, value: T) -> None:
         self._value = value
 
     @property
-    def value(self) -> int:
+    def value(self) -> T:
         return self._value
 
-    def compare(self: I, other: I) -> Ordering:
+    def compare(self, other: Self) -> Ordering:
         self_value = self.value
         other_value = other.value
 
@@ -27,14 +29,14 @@ class Int(Compare):
 
 
 def test_compare() -> None:
-    assert Int(13) < Int(34)
-    assert Int(69) > Int(42)
+    assert Wrap(13) < Wrap(34)
+    assert Wrap(69) > Wrap(42)
 
-    assert Int(0) <= Int(0)
-    assert Int(0) <= Int(1)
+    assert Wrap(0) <= Wrap(0)
+    assert Wrap(0) <= Wrap(1)
 
-    assert Int(1) >= Int(1)
-    assert Int(1) >= Int(0)
+    assert Wrap(1) >= Wrap(1)
+    assert Wrap(1) >= Wrap(0)
 
-    assert Int(0) == Int(0)
-    assert Int(1) != Int(-1)
+    assert Wrap(0) == Wrap(0)
+    assert Wrap(1) != Wrap(-1)

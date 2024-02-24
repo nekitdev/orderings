@@ -1,9 +1,8 @@
-from abc import abstractmethod as required
 from enum import Enum
-from typing import Any, TypeVar
+from typing import Any, Protocol
 
-from typing_aliases import is_same_or_sub_type
-from typing_extensions import Protocol
+from typing_aliases import is_same_or_sub_type, required
+from typing_extensions import Self
 
 from orderings.typing import Ordered
 
@@ -88,33 +87,30 @@ class Ordering(Enum):
         return self.is_greater() or self.is_equal()
 
 
-C = TypeVar("C", bound="Compare")
-
-
 class Compare(Ordered, Protocol):
     """Implements total ordering via delegation to the
     [`compare`][orderings.core.Compare.compare] method.
     """
 
     @required
-    def compare(self: C, other: C) -> Ordering:
+    def compare(self, other: Self) -> Ordering:
         """Defines ordering via the [`Ordering`][orderings.core.Ordering] enumeration."""
         ...
 
-    def __lt__(self: C, other: C) -> bool:
+    def __lt__(self, other: Self) -> bool:
         return self.compare(other).is_less()
 
-    def __gt__(self: C, other: C) -> bool:
+    def __gt__(self, other: Self) -> bool:
         return self.compare(other).is_greater()
 
-    def __le__(self: C, other: C) -> bool:
+    def __le__(self, other: Self) -> bool:
         return self.compare(other).is_less_or_equal()
 
-    def __ge__(self: C, other: C) -> bool:
+    def __ge__(self, other: Self) -> bool:
         return self.compare(other).is_greater_or_equal()
 
     def __eq__(self, other: Any) -> bool:
         return is_same_or_sub_type(other, self) and self.compare(other).is_equal()
 
     def __ne__(self, other: Any) -> bool:
-        return is_same_or_sub_type(other, self) or self.compare(other).is_not_equal()
+        return is_same_or_sub_type(other, self) and self.compare(other).is_not_equal()

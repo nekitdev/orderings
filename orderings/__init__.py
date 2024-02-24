@@ -6,11 +6,17 @@ __url__ = "https://github.com/nekitdev/orderings"
 __title__ = "orderings"
 __author__ = "nekitdev"
 __license__ = "MIT"
-__version__ = "1.2.0"
+__version__ = "1.3.0"
 
 from orderings.core import Compare, Ordering
 from orderings.typing import (
-    Greater, GreaterOrEqual, LenientOrdered, Less, LessOrEqual, Ordered, StrictOrdered
+    Greater,
+    GreaterOrEqual,
+    LenientOrdered,
+    Less,
+    LessOrEqual,
+    Ordered,
+    StrictOrdered,
 )
 
 __all__ = (

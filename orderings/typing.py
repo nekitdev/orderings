@@ -1,7 +1,7 @@
-from abc import abstractmethod as required
-from typing import TypeVar
+from typing import Protocol
 
-from typing_extensions import Protocol
+from typing_aliases import required
+from typing_extensions import Self
 
 __all__ = (
     "Less",
@@ -13,8 +13,6 @@ __all__ = (
     "Ordered",
 )
 
-L = TypeVar("L", bound="Less")
-
 
 class Less(Protocol):
     """Represents types that implement the *less* operation (`self < other`)
@@ -22,11 +20,8 @@ class Less(Protocol):
     """
 
     @required
-    def __lt__(self: L, __other: L) -> bool:
+    def __lt__(self, __other: Self) -> bool:
         ...
-
-
-G = TypeVar("G", bound="Greater")
 
 
 class Greater(Protocol):
@@ -35,7 +30,7 @@ class Greater(Protocol):
     """
 
     @required
-    def __gt__(self: G, __other: G) -> bool:
+    def __gt__(self, __other: Self) -> bool:
         ...
 
 
@@ -45,20 +40,14 @@ class StrictOrdered(Less, Greater, Protocol):
     """
 
 
-LE = TypeVar("LE", bound="LessOrEqual")
-
-
 class LessOrEqual(Protocol):
     """Represents types that implement the *less-or-equal* operation (`self <= other`)
     where `other` is of type `Self`.
     """
 
     @required
-    def __le__(self: LE, __other: LE) -> bool:
+    def __le__(self, __other: Self) -> bool:
         ...
-
-
-GE = TypeVar("GE", bound="GreaterOrEqual")
 
 
 class GreaterOrEqual(Protocol):
@@ -67,7 +56,7 @@ class GreaterOrEqual(Protocol):
     """
 
     @required
-    def __ge__(self: GE, __other: GE) -> bool:
+    def __ge__(self, __other: Self) -> bool:
         ...
 
 

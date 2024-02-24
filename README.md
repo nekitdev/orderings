@@ -14,7 +14,7 @@
 
 ## Installing
 
-**Python 3.7 or above is required.**
+**Python 3.8 or above is required.**
 
 ### pip
 
@@ -44,7 +44,7 @@ Or by directly specifying it in the configuration like so:
 
 ```toml
 [tool.poetry.dependencies]
-orderings = "^1.2.0"
+orderings = "^1.3.0"
 ```
 
 Alternatively, you can add it directly from the source:
@@ -54,6 +54,11 @@ Alternatively, you can add it directly from the source:
 git = "https://github.com/nekitdev/orderings.git"
 ```
 
+## Motivation
+
+Sometimes it's simpler to handle ordering in one method, for example when comparing iterators;
+then it's trivial to implement the regular ordering methods using the `compare` method.
+
 ## Examples
 
 ### Core
@@ -62,17 +67,20 @@ The core of `orderings` is the [`Ordering`][orderings.core.Ordering] enumeration
 and the [`Compare`][orderings.core.Compare] protocol:
 
 ```python
-from attrs import frozen
-from orderings import Compare, Ordering
+from typing import Generic, TypeVar
 
-I = TypeVar("I", bound="Int")
+from attrs import frozen
+from orderings import Compare, Ordering, StrictOrdered
+from typing_extensions import Self
+
+T = TypeVar("T", bound=StrictOrdered)
 
 
 @frozen()
-class Int(Compare):
-    value: int
+class Wrap(Compare, Generic[T]):
+    value: T
 
-    def compare(self: I, other: I) -> Ordering:
+    def compare(self, other: Self) -> Ordering:
         self_value = self.value
         other_value = other.value
 
@@ -116,7 +124,7 @@ If you are interested in contributing to `orderings`, make sure to take a look a
 
 [Email]: mailto:support@nekit.dev
 
-[Discord]: https://nekit.dev/discord
+[Discord]: https://nekit.dev/chat
 
 [Actions]: https://github.com/nekitdev/orderings/actions
 
@@ -131,7 +139,7 @@ If you are interested in contributing to `orderings`, make sure to take a look a
 [Coverage]: https://codecov.io/gh/nekitdev/orderings
 [Documentation]: https://nekitdev.github.io/orderings
 
-[Discord Badge]: https://img.shields.io/badge/chat-discord-5865f2
+[Discord Badge]: https://img.shields.io/discord/728012506899021874
 [License Badge]: https://img.shields.io/pypi/l/orderings
 [Version Badge]: https://img.shields.io/pypi/v/orderings
 [Downloads Badge]: https://img.shields.io/pypi/dm/orderings
