@@ -44,7 +44,7 @@ Or by directly specifying it in the configuration like so:
 
 ```toml
 [tool.poetry.dependencies]
-orderings = "^1.3.0"
+orderings = "^1.3.1"
 ```
 
 Alternatively, you can add it directly from the source:

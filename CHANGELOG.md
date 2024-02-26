@@ -2,7 +2,11 @@
 
 <!-- changelogging: start -->
 
-## 1.3.0 (2023-02-24)
+## 1.3.1 (2024-02-26)
+
+No significant changes.
+
+## 1.3.0 (2024-02-24)
 
 ### Internal
 
