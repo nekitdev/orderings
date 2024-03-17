@@ -1,7 +1,7 @@
 from typing import Generic, TypeVar
 from typing_extensions import Self
 
-from orderings import Compare, Ordering
+from orderings.core import Compare, Ordering, is_compare
 from orderings.typing import StrictOrdered
 
 T = TypeVar("T", bound=StrictOrdered)
@@ -39,4 +39,9 @@ def test_compare() -> None:
     assert Wrap(1) >= Wrap(0)
 
     assert Wrap(0) == Wrap(0)
-    assert Wrap(1) != Wrap(-1)
+    assert Wrap(1) != Wrap(0)
+
+
+def test_is_compare() -> None:
+    assert is_compare(Wrap(13))
+    assert not is_compare(13)

@@ -2,6 +2,16 @@
 
 <!-- changelogging: start -->
 
+## 1.3.2 (2024-03-17)
+
+### Features
+
+- Added the `is_compare` function to check for items that implement the `Compare` protocol.
+
+### Changes
+
+- All the protocols in the library are now marked as `@runtime_checkable`.
+
 ## 1.3.1 (2024-02-26)
 
 No significant changes.

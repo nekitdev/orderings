@@ -1,12 +1,12 @@
 from enum import Enum
-from typing import Any, Protocol
+from typing import Any, Protocol, runtime_checkable
 
-from typing_aliases import is_same_or_sub_type, required
-from typing_extensions import Self
+from typing_aliases import is_instance, is_same_or_sub_type, required
+from typing_extensions import Self, TypeIs
 
 from orderings.typing import Ordered
 
-__all__ = ("Compare", "Ordering")
+__all__ = ("Compare", "Ordering", "is_compare")
 
 
 class Ordering(Enum):
@@ -14,8 +14,10 @@ class Ordering(Enum):
 
     LESS = -1
     """The left item is *less* than the right item."""
+
     EQUAL = 0
     """The left item is *equal* to the right item."""
+
     GREATER = 1
     """The left item is *greater* than the right item."""
 
@@ -87,6 +89,7 @@ class Ordering(Enum):
         return self.is_greater() or self.is_equal()
 
 
+@runtime_checkable
 class Compare(Ordered, Protocol):
     """Implements total ordering via delegation to the
     [`compare`][orderings.core.Compare.compare] method.
@@ -114,3 +117,15 @@ class Compare(Ordered, Protocol):
 
     def __ne__(self, other: Any) -> bool:
         return is_same_or_sub_type(other, self) and self.compare(other).is_not_equal()
+
+
+def is_compare(item: Any) -> TypeIs[Compare]:
+    """Checks if the `item` implements the [`Compare`][orderings.core.Compare] protocol.
+
+    Arguments:
+        item: The item to check.
+
+    Returns:
+        Whether the `item` implements the [`Compare`][orderings.core.Compare] protocol.
+    """
+    return is_instance(item, Compare)
