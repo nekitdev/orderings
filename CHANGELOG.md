@@ -2,6 +2,17 @@
 
 <!-- changelogging: start -->
 
+## 1.4.0 (2024-04-02)
+
+- Added the following protocols:
+  - `PartialLess[T]`;
+  - `PartialGreater[T]`;
+  - `PartialStrictOrdered[T]`;
+  - `PartialLessOrEqual[T]`;
+  - `PartialGreaterOrEqual[T]`;
+  - `PartialLenientOrdered[T]`;
+  - `PartialOrdered[T]`.
+
 ## 1.3.2 (2024-03-17)
 
 ### Features

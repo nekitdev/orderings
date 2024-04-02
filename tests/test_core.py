@@ -1,4 +1,5 @@
 from typing import Generic, TypeVar
+
 from typing_extensions import Self
 
 from orderings.core import Compare, Ordering, is_compare

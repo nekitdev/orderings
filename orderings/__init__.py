@@ -6,7 +6,7 @@ __url__ = "https://github.com/nekitdev/orderings"
 __title__ = "orderings"
 __author__ = "nekitdev"
 __license__ = "MIT"
-__version__ = "1.3.2"
+__version__ = "1.4.0"
 
 from orderings.core import Compare, Ordering, is_compare
 from orderings.typing import (
@@ -16,6 +16,13 @@ from orderings.typing import (
     Less,
     LessOrEqual,
     Ordered,
+    PartialGreater,
+    PartialGreaterOrEqual,
+    PartialLenientOrdered,
+    PartialLess,
+    PartialLessOrEqual,
+    PartialOrdered,
+    PartialStrictOrdered,
     StrictOrdered,
 )
 
@@ -24,7 +31,15 @@ __all__ = (
     "Compare",
     "Ordering",
     "is_compare",
-    # typing
+    # partial
+    "PartialLess",
+    "PartialGreater",
+    "PartialStrictOrdered",
+    "PartialLessOrEqual",
+    "PartialGreaterOrEqual",
+    "PartialLenientOrdered",
+    "PartialOrdered",
+    # total
     "Less",
     "Greater",
     "StrictOrdered",
