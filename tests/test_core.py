@@ -1,5 +1,5 @@
 from typing import Generic, TypeVar
-
+from hypothesis import given, strategies
 from typing_extensions import Self
 
 from orderings.core import Compare, Ordering, is_compare
@@ -29,18 +29,14 @@ class Wrap(Compare, Generic[T]):
         return Ordering.EQUAL
 
 
-def test_compare() -> None:
-    assert Wrap(13) < Wrap(34)
-    assert Wrap(69) > Wrap(42)
-
-    assert Wrap(0) <= Wrap(0)
-    assert Wrap(0) <= Wrap(1)
-
-    assert Wrap(1) >= Wrap(1)
-    assert Wrap(1) >= Wrap(0)
-
-    assert Wrap(0) == Wrap(0)
-    assert Wrap(1) != Wrap(0)
+@given(strategies.integers(), strategies.integers())
+def test_compare(left: int, right: int) -> None:
+    assert (left < right) is (Wrap(left) < Wrap(right))
+    assert (left > right) is (Wrap(left) > Wrap(right))
+    assert (left <= right) is (Wrap(left) <= Wrap(right))
+    assert (left >= right) is (Wrap(left) >= Wrap(right))
+    assert (left == right) is (Wrap(left) == Wrap(right))
+    assert (left != right) is (Wrap(left) != Wrap(right))
 
 
 def test_is_compare() -> None:
