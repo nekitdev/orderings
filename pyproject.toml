@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "orderings"
-version = "1.4.0"
+version = "1.5.0"
 description = "Ordering enumeration and protocols."
 authors = ["nekitdev"]
 license = "MIT"
@@ -104,7 +104,7 @@ strict = true
 
 [tool.changelogging.context]
 name = "orderings"
-version = "1.4.0"
+version = "1.5.0"
 url = "https://github.com/nekitdev/orderings"
 
 [tool.changelogging.formats]
