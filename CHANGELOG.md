@@ -2,6 +2,19 @@
 
 <!-- changelogging: start -->
 
+## [1.5.0](https://github.com/nekitdev/orderings/tree/v1.5.0) (2024-06-04)
+
+### Features
+
+- Added `PartialCompare[T]`, which acts similarly to `Compare`,
+  except it allows for comparing against defined `T`.
+  ([#44](https://github.com/nekitdev/orderings/pull/44))
+
+### Fixes
+
+- Fixed the `!=` operator implementation of `Compare`.
+  ([#44](https://github.com/nekitdev/orderings/pull/44))
+
 ## 1.4.0 (2024-04-02)
 
 - Added the following protocols:
