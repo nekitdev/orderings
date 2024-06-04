@@ -8,7 +8,7 @@ __author__ = "nekitdev"
 __license__ = "MIT"
 __version__ = "1.4.0"
 
-from orderings.core import Compare, Ordering, is_compare
+from orderings.core import Compare, Ordering, PartialCompare, is_compare
 from orderings.typing import (
     Greater,
     GreaterOrEqual,
@@ -28,8 +28,9 @@ from orderings.typing import (
 
 __all__ = (
     # core
-    "Compare",
     "Ordering",
+    "PartialCompare",
+    "Compare",
     "is_compare",
     # partial
     "PartialLess",

@@ -1,12 +1,12 @@
 from enum import Enum
-from typing import Any, Protocol, runtime_checkable
+from typing import Any, Protocol, TypeVar, runtime_checkable
 
 from typing_aliases import is_instance, is_same_or_sub_type, required
 from typing_extensions import Self, TypeIs
 
-from orderings.typing import Ordered
+from orderings.typing import Ordered, PartialOrdered
 
-__all__ = ("Compare", "Ordering", "is_compare")
+__all__ = ("Ordering", "PartialCompare", "Compare")
 
 
 class Ordering(Enum):
@@ -89,6 +89,36 @@ class Ordering(Enum):
         return self.is_greater() or self.is_equal()
 
 
+T = TypeVar("T", contravariant=True)
+
+
+@runtime_checkable
+class PartialCompare(PartialOrdered[T], Protocol[T]):
+    """Implements partial ordering via delegation to the
+    [`partial_compare`][orderings.core.PartialCompare.partial_compare] method.
+
+    Note:
+        Please note that this protocol does not implement equality methods.
+    """
+
+    @required
+    def partial_compare(self, value: T) -> Ordering:
+        """Defines partial ordering via the [`Ordering`][orderings.core.Ordering] enumeration."""
+        ...
+
+    def __lt__(self, value: T) -> bool:
+        return self.partial_compare(value).is_less()
+
+    def __gt__(self, value: T) -> bool:
+        return self.partial_compare(value).is_greater()
+
+    def __le__(self, value: T) -> bool:
+        return self.partial_compare(value).is_less_or_equal()
+
+    def __ge__(self, value: T) -> bool:
+        return self.partial_compare(value).is_greater_or_equal()
+
+
 @runtime_checkable
 class Compare(Ordered, Protocol):
     """Implements total ordering via delegation to the
@@ -116,7 +146,7 @@ class Compare(Ordered, Protocol):
         return is_same_or_sub_type(other, self) and self.compare(other).is_equal()
 
     def __ne__(self, other: Any) -> bool:
-        return is_same_or_sub_type(other, self) and self.compare(other).is_not_equal()
+        return not is_same_or_sub_type(other, self) or self.compare(other).is_not_equal()
 
 
 def is_compare(item: Any) -> TypeIs[Compare]:
