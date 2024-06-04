@@ -12,11 +12,11 @@
 
 > *Ordering enumeration and protocols.*
 
-## Installing
+## Installation
 
 **Python 3.8 or above is required.**
 
-### pip
+### `pip`
 
 Installing the library with `pip` is quite simple:
 
@@ -27,12 +27,18 @@ $ pip install orderings
 Alternatively, the library can be installed from source:
 
 ```console
-$ git clone https://github.com/nekitdev/orderings.git
-$ cd orderings
-$ python -m pip install .
+$ pip install git+https://github.com/nekitdev/orderings.git
 ```
 
-### poetry
+Or via cloning the repository:
+
+```console
+$ git clone https://github.com/nekitdev/orderings.git
+$ cd orderings
+$ pip install .
+```
+
+### `poetry`
 
 You can add `orderings` as a dependency with the following command:
 
