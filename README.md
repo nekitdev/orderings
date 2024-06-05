@@ -76,10 +76,10 @@ and the [`Compare`][orderings.core.Compare] protocol:
 from typing import Generic, TypeVar
 
 from attrs import frozen
-from orderings import Compare, Ordering, StrictOrdered
+from orderings import Compare, Ordered, Ordering, compare
 from typing_extensions import Self
 
-T = TypeVar("T", bound=StrictOrdered)
+T = TypeVar("T", bound=Ordered)
 
 
 @frozen()
@@ -87,16 +87,7 @@ class Wrap(Compare, Generic[T]):
     value: T
 
     def compare(self, other: Self) -> Ordering:
-        self_value = self.value
-        other_value = other.value
-
-        if self_value < other_value:
-            return Ordering.LESS
-
-        if self_value > other_value:
-            return Ordering.GREATER
-
-        return Ordering.EQUAL
+        return compare(self.value, other.value)
 ```
 
 [`Compare`][orderings.core.Compare] implements all ordering operations

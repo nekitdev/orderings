@@ -2,10 +2,10 @@ from typing import Generic, TypeVar
 from hypothesis import given, strategies
 from typing_extensions import Self
 
-from orderings.core import Compare, Ordering, is_compare
-from orderings.typing import StrictOrdered
+from orderings.core import Compare, Ordering, compare, is_compare
+from orderings.typing import Ordered
 
-T = TypeVar("T", bound=StrictOrdered)
+T = TypeVar("T", bound=Ordered)
 
 
 class Wrap(Compare, Generic[T]):
@@ -17,16 +17,7 @@ class Wrap(Compare, Generic[T]):
         return self._value
 
     def compare(self, other: Self) -> Ordering:
-        self_value = self.value
-        other_value = other.value
-
-        if self_value < other_value:
-            return Ordering.LESS
-
-        if self_value > other_value:
-            return Ordering.GREATER
-
-        return Ordering.EQUAL
+        return compare(self.value, other.value)
 
 
 @given(strategies.integers(), strategies.integers())

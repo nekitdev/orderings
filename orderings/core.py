@@ -6,7 +6,7 @@ from typing_extensions import Self, TypeIs
 
 from orderings.typing import Ordered, PartialOrdered
 
-__all__ = ("Ordering", "PartialCompare", "Compare", "is_compare")
+__all__ = ("Ordering", "PartialCompare", "Compare", "compare", "is_compare")
 
 
 class Ordering(Enum):
@@ -159,3 +159,22 @@ def is_compare(item: Any) -> TypeIs[Compare]:
         Whether the `item` implements the [`Compare`][orderings.core.Compare] protocol.
     """
     return is_instance(item, Compare)
+
+
+def compare(left: PartialOrdered[T], right: T) -> Ordering:
+    """Compares `left` and `right`, returning [`Ordering`][orderings.core.Ordering].
+
+    Arguments:
+        left: The left value.
+        right: The right value.
+
+    Returns:
+        The result.
+    """
+    if left < right:
+        return Ordering.LESS
+
+    if left > right:
+        return Ordering.GREATER
+
+    return Ordering.EQUAL
