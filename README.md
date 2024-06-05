@@ -50,7 +50,7 @@ Or by directly specifying it in the configuration like so:
 
 ```toml
 [tool.poetry.dependencies]
-orderings = "^1.5.0"
+orderings = "^1.6.0"
 ```
 
 Alternatively, you can add it directly from the source:
