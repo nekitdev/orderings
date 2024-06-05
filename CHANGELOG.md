@@ -2,6 +2,12 @@
 
 <!-- changelogging: start -->
 
+## [1.6.0](https://github.com/nekitdev/orderings/tree/v1.6.0) (2024-06-05)
+
+### Features
+
+- Added the `compare` function. ([#45](https://github.com/nekitdev/orderings/pull/45))
+
 ## [1.5.0](https://github.com/nekitdev/orderings/tree/v1.5.0) (2024-06-04)
 
 ### Features
