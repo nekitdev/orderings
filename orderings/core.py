@@ -6,7 +6,7 @@ from typing_extensions import Self, TypeIs
 
 from orderings.typing import Ordered, PartialOrdered
 
-__all__ = ("Ordering", "PartialCompare", "Compare")
+__all__ = ("Ordering", "PartialCompare", "Compare", "is_compare")
 
 
 class Ordering(Enum):
